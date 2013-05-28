@@ -1,20 +1,23 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
-    ul.menu
-      li
-        a(href='view1') view1
-      li
-        a(href='view2') view2
+  div
+    #top
+      h1 Fuck your screen
+      ul.menu
+        li
+          a(href='view') view
+        li
+          a(href='add') add
+
+      div#info
+        | v
+        span(app-version)
+    hr
 
     div(ng-view)
 
-    div
-      | Angular Socket.io seed app: v
-      span(app-version)
-
+  script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js')
   script(src='js/lib/angular/angular.js')
   script(src='/socket.io/socket.io.js')
   script(src='js/app.js')

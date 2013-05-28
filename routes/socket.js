@@ -3,13 +3,18 @@
  */
 
 module.exports = function (socket) {
-  socket.emit('send:name', {
-    name: 'Bob'
-  });
+  var urlQueue = [];
+  
+  socket.on('add:url', function(data) {
+  	console.log("add:url:" + data);
+  	urlQueue.push(data.url);
 
-  setInterval(function () {
-    socket.emit('send:time', {
-      time: (new Date()).toString()
+  	socket.broadcast.emit('send:message', {
+      text: "Queued url successfully"
+  	});
+
+  	socket.broadcast.emit('send:url', {
+      url: data.url 
     });
-  }, 1000);
+  });
 };
